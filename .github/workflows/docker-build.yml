@@ -11,8 +11,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Create Docker tag
         run: echo "TAG=$(date +%s)" >> "$GITHUB_ENV"
+      - name: Create git sha tag
+        run: echo "HASH=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag aws-cis-inspec-scanner:${TAG}
+        run: docker build . --file Dockerfile --tag aws-cis-inspec-scanner:${TAG} --tag aws-cis-inspec-scanner:latest --tag aws-cis-inspec-scanner:${HASH}
       - name: Test the Docker image
         run: |
           docker run --entrypoint /bin/bash aws-cis-inspec-scanner:${TAG} -c "aws --version"
