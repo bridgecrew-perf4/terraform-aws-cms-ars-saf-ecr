@@ -10,7 +10,7 @@ Author: @rdhariwal
 
 * apply terraform module and get the arn for the ECR repo created by the module
 * file a ticket with [CMS Cloud Support team](https://jiraent.cms.gov/plugins/servlet/desk/portal/22) to create an Iam user with the following policy.
-    * update the Resource arn with your ECR repo'a arn
+* update the resource arn with your ECR repo's arn
 
 ```json
 {
