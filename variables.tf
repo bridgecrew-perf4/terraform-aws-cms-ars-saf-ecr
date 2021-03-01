@@ -26,9 +26,3 @@ variable "scan_on_push" {
   description = "Scan image on push to repo."
   default     = true
 }
-
-variable "ci" {
-  type        = string
-  description = "Name for the CI agent"
-  default     = ""
-}
