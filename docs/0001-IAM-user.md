@@ -1,6 +1,6 @@
 # Create Iam user to push container images into ECR repo
 
-In order for github actions to push new container images into the ECR repo we need an Iam user. This Iam user will have write permissions to the ECR repo created as part of terraform module. 
+In order for github actions to push new container images into the ECR repo we need an Iam user. This Iam user will have write permissions to the ECR repo created as part of terraform module.
 
 Date: 2021-03-01
 
