@@ -23,15 +23,15 @@ jobs:
       - name: Create env var for ECR repo
         run:  echo 'ECR_REPOSITORY="inspec-profile-aws-mod"' >> "$GITHUB_ENV"
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag $ECR_REGISTRY:${TAG} --tag $ECR_REGISTRY:latest --tag $ECR_REGISTRY:${HASH}
+        run: docker build . --file Dockerfile --tag $ECR_REPOSITORY:${TAG} --tag $ECR_REPOSITORY:latest --tag $ECR_REPOSITORY:${HASH}
       - name: Test the Docker image
         run: |
-          docker run --entrypoint /bin/bash $ECR_REGISTRY:${TAG} -c "aws --version"
-          docker run --entrypoint /bin/bash $ECR_REGISTRY:${TAG} -c "git --version"
-          docker run --entrypoint /bin/bash $ECR_REGISTRY:${TAG} -c "curl --version"
-          docker run --entrypoint /bin/bash $ECR_REGISTRY:${TAG} -c "gpg --version"
-          docker run --entrypoint /bin/bash $ECR_REGISTRY:${TAG} -c "gpg-agent --version"
-          docker run --entrypoint /bin/bash $ECR_REGISTRY:${TAG} -c "unzip"
+          docker run --entrypoint /bin/bash $ECR_REPOSITORY:${TAG} -c "aws --version"
+          docker run --entrypoint /bin/bash $ECR_REPOSITORY:${TAG} -c "git --version"
+          docker run --entrypoint /bin/bash $ECR_REPOSITORY:${TAG} -c "curl --version"
+          docker run --entrypoint /bin/bash $ECR_REPOSITORY:${TAG} -c "gpg --version"
+          docker run --entrypoint /bin/bash $ECR_REPOSITORY:${TAG} -c "gpg-agent --version"
+          docker run --entrypoint /bin/bash $ECR_REPOSITORY:${TAG} -c "unzip"
       - name: Configure AWS Credentials
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
