@@ -44,5 +44,5 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: inspec-profile-aws-mod
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${TAG} .
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${TAG} --tag $ECR_REGISTRY/$ECR_REPOSITORY:latest --tag $ECR_REGISTRY/$ECR_REPOSITORY:${HASH} .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY --all-tags
