@@ -11,8 +11,8 @@ Author: @rdhariwal
 
 ## Manual Work Performed
 
-* update the values for `aws-region` and `ECR_REPOSITORY` in `.github/workflows/docker-build.yml` 
+* update the values for `aws-region` and `ECR_REPOSITORY` in `.github/workflows/docker-build.yml`
 
 ## Reason for Manual Execution
 
-Because the values for the aws region and the name of the ECR repo depend on user supplied values. 
+Because the values for the aws region and the name of the ECR repo depend on user supplied values.

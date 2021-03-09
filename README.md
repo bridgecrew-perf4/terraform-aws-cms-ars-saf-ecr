@@ -14,4 +14,4 @@ This repo is already configured to publish new docker images to ECR. In order to
     1. The AWS IAM account will be used to push new images in ECR repo
     1. Generate a new AWS access key and secret in AWS console or from CLI for the IAM account generated in step 1
     1. Add `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to github repo secrets
-1. Configure static variables as outlined in this [doc](/docs/0002-githubactions-static-variables.md) 
+1. Configure static variables as outlined in this [doc](/docs/0002-githubactions-static-variables.md)
