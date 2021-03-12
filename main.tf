@@ -20,10 +20,38 @@ resource "aws_ecr_lifecycle_policy" "main" {
   policy     = local.policy
 }
 
-# Only create the resource if policy is specified. By Default AWS does not
-# attach a ECR policy to a repository.
+# attach a ECR policy to a repository and give read only cross account access to external principal accounts
 resource "aws_ecr_repository_policy" "main" {
   repository = aws_ecr_repository.main.name
-  policy     = var.ecr_policy
-  count      = length(var.ecr_policy) > 0 ? 1 : 0
+  policy     = data.aws_iam_policy_document.ecr_read_perms.json
+  count      = length(var.allowed_read_principals) > 0 ? 1 : 0
+}
+
+data "aws_iam_policy_document" "ecr_read_perms" {
+
+  statement {
+    sid = "CrossAccountReadOnly"
+
+    effect = "Allow"
+
+    actions = [
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:GetAuthorizationToken",
+      "ecr:GetDownloadUrlForLayer",
+      "ecr:ListImages",
+      "ecr:DescribeImages",
+      "ecr:BatchGetImage",
+    ]
+
+    principals {
+      identifiers = var.allowed_read_principals
+      type        = "AWS"
+    }
+
+    condition {
+      test     = "ArnEquals"
+      variable = "aws:SourceArn"
+      values   = aws_ecr_repository.main.arn
+    }
+  }
 }
