@@ -51,7 +51,7 @@ data "aws_iam_policy_document" "ecr_read_perms" {
     condition {
       test     = "ArnEquals"
       variable = "aws:SourceArn"
-      values   = aws_ecr_repository.main.arn
+      values   = [aws_ecr_repository.main.arn]
     }
   }
 }
