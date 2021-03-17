@@ -81,11 +81,5 @@ data "aws_iam_policy_document" "ecr_perms_ro_cross_account" {
       identifiers = var.allowed_read_principals
       type        = "AWS"
     }
-
-    condition {
-      test     = "ArnEquals"
-      variable = "aws:SourceArn"
-      values   = [aws_ecr_repository.main.arn]
-    }
   }
 }
