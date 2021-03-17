@@ -9,12 +9,6 @@ variable "lifecycle_policy" {
   default     = ""
 }
 
-variable "ecr_policy" {
-  type        = string
-  description = "ECR Permission Policy for external access."
-  default     = ""
-}
-
 variable "tags" {
   type        = map(any)
   description = "Additional tags to apply."
@@ -25,4 +19,10 @@ variable "scan_on_push" {
   type        = bool
   description = "Scan image on push to repo."
   default     = true
+}
+
+variable "allowed_read_principals" {
+  type        = list
+  description = "External principals that are allowed to read from the ECR repository"
+  default     = []
 }
