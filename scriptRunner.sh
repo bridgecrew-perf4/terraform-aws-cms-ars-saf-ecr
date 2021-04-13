@@ -2,8 +2,13 @@
 
 set -eo pipefail
 
+echo "starting Inpsec scan, start"
+
 # log output of inspec run to stdout
 inspec exec /home/default/profiles/cms-ars-3.1-moderate-aws-foundations-cis-overlay --target aws:// --chef-license accept-silent --no-color
+
+echo "starting Inpsec scan, stop"
+
 
 # if the s3_bucket_path is not provided, do not push json file to the bucket
 # shellcheck disable=SC2154
