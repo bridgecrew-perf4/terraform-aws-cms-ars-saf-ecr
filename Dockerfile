@@ -47,8 +47,9 @@ RUN mkdir profiles \
     && cd cms-ars-3.1-moderate-aws-foundations-cis-overlay
 
 COPY inputs.yml profiles/cms-ars-3.1-moderate-aws-foundations-cis-overlay/
+COPY scriptRunner.sh ./profiles/
 
 # execute CMS CIS profile
-ENTRYPOINT ["inspec", "exec", "profiles/cms-ars-3.1-moderate-aws-foundations-cis-overlay"]
+ENTRYPOINT ["./profiles/scriptRunner.sh"]
 
 CMD ["--chef-license=accept-silent"]
