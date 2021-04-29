@@ -2,7 +2,7 @@ name: docker-build
 
 on:
   push:
-    branches: [cht-github-workflow-fixes]
+    branches: [main]
   # Also trigger on release created event
   release:
     types: [published]
@@ -42,7 +42,6 @@ jobs:
           docker run --entrypoint /bin/bash $ECR_REGISTRY/$ECR_REPOSITORY:${TAG} -c "gpg-agent --version"
           docker run --entrypoint /bin/bash $ECR_REGISTRY/$ECR_REPOSITORY:${TAG} -c "unzip"
           docker run --entrypoint /bin/bash $ECR_REGISTRY/$ECR_REPOSITORY:${TAG} -c "inspec exec /home/default/profiles/cms-ars-3.1-moderate-aws-foundations-cis-overlay --chef-license accept-silent" # this test verifies that the inspec binary has all the dependencies it needs
-          docker run --entrypoint /bin/bash $ECR_REGISTRY/$ECR_REPOSITORY:${TAG} -c "exit 1"
       - name: Push docker image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
