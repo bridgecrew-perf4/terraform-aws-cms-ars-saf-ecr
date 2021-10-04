@@ -1,4 +1,8 @@
-# terraform-aws-cms-ars-saf-ecr
+# DEPRECATED
+
+This project has been deprecated due to AWS Inspector now being an integrated part of CMS AWS accounts, making this tool unnecessary.
+
+## terraform-aws-cms-ars-saf-ecr
 
 This repo contains a Dockerfile for building a container that can run an
 Inspec scan against an AWS account, as well as a Terraform module that
